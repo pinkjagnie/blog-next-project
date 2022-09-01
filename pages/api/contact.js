@@ -10,22 +10,23 @@ function handler(req, res) {
       !message ||
       message.trim() === ""
     ) {
-      res.status(422).json({ message: "Invalid input" });
+      res.status(422).json({ message: "Invalid input." });
       return;
     }
+
+    // Store it in a database
+    const newMessage = {
+      email,
+      name,
+      message,
+    };
+
+    console.log(newMessage);
+
+    res
+      .status(201)
+      .json({ message: "Successfully stored message!", message: newMessage });
   }
-
-  const newMessage = {
-    email,
-    name,
-    message,
-  };
-
-  console.log(newMessage);
-
-  res
-    .status(200)
-    .json({ message: "Successfully stored message", message: newMessage });
 }
 
 export default handler;
